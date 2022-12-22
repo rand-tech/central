@@ -6,13 +6,12 @@ import {
   getCourseById,
 } from "./../Syllabus";
 
-import type { Syllabus, General, Description } from "./Syllabus";
+import type { Syllabus, General, Description } from "./../Syllabus";
 import Accordion from "react-bootstrap/Accordion";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../App.css";
 import NoMatch from "./../ui/NoMatch";
-import ControlledAccordions from "./test";
 
 function CourseView() {
   // return images
@@ -53,7 +52,7 @@ function CourseView() {
       </div>
 
       <div
-        className="simplebar-mask"
+        className="barm"
         style={{
           height: "90vh",
           position: "relative",
@@ -62,6 +61,9 @@ function CourseView() {
       >
         <ul className="list-inline">
           {teacher_info.map((items, index) => {
+            if (!items) {
+              return null;
+            }
             return (
               <li className="list-inline-item">
                 <span className="badge rounded-pill text-bg-secondary">
@@ -95,7 +97,11 @@ function CourseView() {
           <dt className="col-sm-3">Credit</dt>
           <dd className="col-sm-9">{syllabus.general.credit}</dd>
         </dl>
-        <Accordion defaultActiveKey={["4"]} alwaysOpen flush>
+        <Accordion
+          defaultActiveKey={["3", "4", "5", "6", "7", "8", "9", "10"]}
+          alwaysOpen
+          flush
+        >
           <Accordion.Item eventKey="0">
             <Accordion.Header>Course Goals</Accordion.Header>
             <Accordion.Body>{syllabus.description.course_goals}</Accordion.Body>
@@ -108,12 +114,14 @@ function CourseView() {
             </Accordion.Body>
           </Accordion.Item>
 
-          <Accordion.Item eventKey="2">
-            <Accordion.Header>Remote Details</Accordion.Header>
-            <Accordion.Body>
-              {syllabus.description.remote_details}
-            </Accordion.Body>
-          </Accordion.Item>
+          {syllabus.description.remote_details && (
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>Remote Details</Accordion.Header>
+              <Accordion.Body>
+                {syllabus.description.remote_details}
+              </Accordion.Body>
+            </Accordion.Item>
+          )}
 
           <Accordion.Item eventKey="3">
             <Accordion.Header>Others</Accordion.Header>
