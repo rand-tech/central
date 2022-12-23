@@ -8,8 +8,8 @@ import {
 
 import type { Syllabus, General, Description } from "./../Syllabus";
 import Accordion from "react-bootstrap/Accordion";
+import "../scss/styles.scss";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./../App.css";
 import NoMatch from "./../ui/NoMatch";
 
@@ -27,8 +27,6 @@ function CourseView() {
     return <NoMatch />;
   }
 
-  let name = `${syllabus.general.course_title_japanese}・${syllabus.general.course_code}・${syllabus.general.faculty}`;
-
   let teacher_info: string[] = [
     syllabus.general.lecturer,
     syllabus.general.email,
@@ -42,10 +40,15 @@ function CourseView() {
   );
   const general: General = syllabus.general;
   return (
-    <section className="card border" key={id}>
+    <section
+      className="card border "
+      key={id}
+      style={{
+        maxHeight: "100vh",
+      }}
+    >
       <div className="card-header">
         <h4 className="card-title">{syllabus.general.course_title_japanese}</h4>
-
         <h5 className="card-subtitle mb-2 text-muted">
           {syllabus.general.course_title_english}
         </h5>
@@ -54,39 +57,45 @@ function CourseView() {
       <div
         className="barm"
         style={{
-          height: "90vh",
+          // height: "90vh",
           position: "relative",
           whiteSpace: "pre-wrap",
         }}
       >
-        <ul className="list-inline">
-          {teacher_info.map((items, index) => {
-            if (!items) {
-              return null;
-            }
-            return (
-              <li className="list-inline-item">
-                <span className="badge rounded-pill text-bg-secondary">
-                  {" "}
-                  {items}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-        <ul className="list-inline">
-          {Object.keys(description).map((items: string, index) => {
-            return (
-              <li className="list-inline-item">
-                <code>{items}</code>
-                <span className="badge rounded-pill text-bg-secondary">
-                  {" "}
-                  {general[items]}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          <ul className="list-inline">
+            {teacher_info.map((items, index) => {
+              if (!items) {
+                return null;
+              }
+              return (
+                <li className="list-inline-item">
+                  <span className="badge rounded-0 text-bg-secondary">
+                    {" "}
+                    {items}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <ul className="list-inline">
+            {Object.keys(description).map((items: string, index) => {
+              return (
+                <>
+                  {general[items] && (
+                    <li className="list-inline-item">
+                      <code>{items}</code>
+                      <span className="badge rounded-0 text-bg-secondary">
+                        {" "}
+                        {general[items]}
+                      </span>
+                    </li>
+                  )}
+                </>
+              );
+            })}
+          </ul>
+        </div>
         <dl className="row">
           <dt className="col-sm-3">Course grade</dt>
           <dd className="col-sm-9">{syllabus.general.grade}</dd>

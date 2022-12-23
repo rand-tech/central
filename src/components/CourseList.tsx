@@ -16,7 +16,7 @@ import VirtualList from "react-tiny-virtual-list";
 import Fuse from "fuse.js";
 
 import type { Syllabus, General, Description } from "./../Syllabus";
-function CourseList() {
+function CourseNav() {
   // useState of search
   const [search, setSearch] = React.useState("");
   let [searchParams] = useSearchParams();
@@ -78,12 +78,9 @@ function CourseList() {
             />
           </div>
           <p>Showing {newResult.length} results</p>
-          {newFunction(newResult)}
+          {CourseLists(newResult)}
         </div>
-              <div className="col"
-                  style={{
-                //   maxHeight: "100vh",
-              }}>
+        <div className="col">
           <div className="sticky-top">
             <Outlet />
           </div>
@@ -93,8 +90,8 @@ function CourseList() {
   );
 }
 
-export default CourseList;
-function newFunction(newResult: Fuse.FuseResult<Syllabus>[]) {
+export default CourseNav;
+function CourseLists(newResult: Fuse.FuseResult<Syllabus>[]) {
   return (
     <div className="border">
       <VirtualList
@@ -125,30 +122,34 @@ class CourseLink extends React.Component<{ course: Syllabus; name: string }> {
     const name = this.props.name;
 
     return (
-        <div className="card course-hover">
-          <div className="card-body  text-truncate">
-            <h6 className="card-title">
-              <Link
-                className="stretched-link"
-                to={`course/${this.props.course.id}`}
-              ></Link>
-              {name}
-            </h6>
-            <h6 className="visually-hidden">{name}</h6>
-            <ul className="list-inline">
-              {show_info.map((items, index) => {
-                return (
-                  <li className="list-inline-item">
-                    <span className="badge rounded-pill text-bg-secondary">
-                      {" "}
-                      {items}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+      <div className="card course-hover">
+        <div className="card-body  text-truncate">
+          <h6 className="card-title">
+            <Link
+              className="stretched-link"
+              to={`course/${this.props.course.id}`}
+            ></Link>
+            {name}
+          </h6>
+          <h6 className="visually-hidden">{name}</h6>
+          <ul className="list-inline">
+            {show_info.map((items, index) => {
+              return (
+                <>
+                  {items && (
+                    <li className="list-inline-item">
+                      <span className="badge rounded-0  text-bg-secondary">
+                        {" "}
+                        {items}
+                      </span>
+                    </li>
+                  )}
+                </>
+              );
+            })}
+          </ul>
         </div>
+      </div>
     );
   }
 }

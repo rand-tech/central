@@ -23,7 +23,7 @@ import "./App.css";
 import type { Syllabus, General, Description } from "./Syllabus";
 // import SyllabusAccordion from './components/Syllabus';
 import CourseView from "./components/CourseView";
-import CourseList from "./components/CourseList";
+import CourseNav from "./components/CourseList";
 
 export default function App() {
   return (
@@ -35,7 +35,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="" element={<CourseList />}>
+          <Route path="" element={<CourseNav />}>
             {/*FIXME: This routes to /course/:id when the user clicks on a card. This is not a feature (lol) */}
             <Route path="course/:id" element={<CourseView />} />
           </Route>
