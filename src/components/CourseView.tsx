@@ -8,9 +8,12 @@ import {
 
 import type { Syllabus, General, Description } from "./../Syllabus";
 import Accordion from "react-bootstrap/Accordion";
-import "../scss/styles.scss";
 
 import "./../App.css";
+import "../scss/styles.scss";
+
+import "./courselist.css";
+import "./courseview.css"
 import NoMatch from "./../ui/NoMatch";
 
 function CourseView() {

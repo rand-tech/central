@@ -1,0 +1,8 @@
+
+.accordion-item:focus {
+    border-color: unset;
+    box-shadow: none !important;
+}
+.accordion-item:first-child {
+  border-top: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color) !important;
+}
