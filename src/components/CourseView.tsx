@@ -36,6 +36,12 @@ function CourseView() {
     syllabus.general.office,
   ];
 
+  const title = syllabus.general.course_title_japanese;
+    useEffect(() => {
+      // Update the document title using the browser API
+      document.title = `${title} / ${syllabus?.general.lecturer} - UEC Central`;
+    });
+
   let description = Object.fromEntries(
     Object.entries(syllabus.general).filter(
       ([key, value]) => !key.startsWith("course_")
