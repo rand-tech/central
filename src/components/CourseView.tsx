@@ -71,7 +71,7 @@ function CourseView() {
           whiteSpace: "pre-wrap",
         }}
       >
-        <div>
+        <div className="card-body">
           <ul className="list-inline">
             {teacher_info.map((items, index) => {
               if (!items) {
@@ -105,16 +105,7 @@ function CourseView() {
             })}
           </ul>
         </div>
-        <dl className="row">
-          <dt className="col-sm-3">Course grade</dt>
-          <dd className="col-sm-9">{syllabus.general.grade}</dd>
-          <dt className="col-sm-3">Course Code</dt>
-          <dd className="col-sm-9">{syllabus.general.course_code}</dd>
-          <dt className="col-sm-3">Semester</dt>
-          <dd className="col-sm-9">{syllabus.general.semester}</dd>
-          <dt className="col-sm-3">Credit</dt>
-          <dd className="col-sm-9">{syllabus.general.credit}</dd>
-        </dl>
+
         <Accordion
           defaultActiveKey={["3", "4", "5", "6", "7", "8", "9", "10"]}
           alwaysOpen

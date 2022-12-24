@@ -62,6 +62,7 @@ function CourseNav() {
           style={{
             display: "flex",
             flexDirection: "column",
+            minWidth: "min(600px,80vw)",
           }}
           className="col col-4"
         >
