@@ -1,6 +1,7 @@
 {
   "name": "uec-central",
   "private": true,
+  "homepage": "/uec-central",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

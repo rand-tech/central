@@ -5,10 +5,11 @@ import { BrowserRouter } from "react-router-dom";
 import './scss/styles.scss';
 import App from "./App";
 import "./index.css";
+import { homepage } from "../package.json";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={homepage}>
       <App />
     </BrowserRouter>
   </React.StrictMode>

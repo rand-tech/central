@@ -33,13 +33,13 @@ export default function App() {
       <p>
       </p> */}
 
-      <Routes>
-        <Route path="/" element={<Layout />}>
+      <Routes >
+        <Route path=""  element={<Layout />}>
           <Route path="" element={<CourseNav />}>
             {/*FIXME: This routes to /course/:id when the user clicks on a card. This is not a feature (lol) */}
             <Route path="course/:id" element={<CourseView />} />
+            <Route path="*" element={<NoMatch />} />
           </Route>
-          <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
     </>
