@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
-
+import { useEffect } from "react";
 import {
   filterByCategory as filterByCategory,
   getCourseById,
@@ -13,7 +13,7 @@ import "./../App.css";
 import "../scss/styles.scss";
 
 import "./courselist.css";
-import "./courseview.css"
+import "./courseview.css";
 import NoMatch from "./../ui/NoMatch";
 
 function CourseView() {
@@ -36,11 +36,11 @@ function CourseView() {
     syllabus.general.office,
   ];
 
-  const title = syllabus.general.course_title_japanese;
-    useEffect(() => {
-      // Update the document title using the browser API
-      document.title = `${title} / ${syllabus?.general.lecturer} - UEC Central`;
-    });
+  const title = `${syllabus.general.course_title_japanese} - UEC Central`;
+  // Update the document title
+  useEffect(() => {
+    document.title = title;
+  });
 
   let description = Object.fromEntries(
     Object.entries(syllabus.general).filter(
