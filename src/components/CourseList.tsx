@@ -55,6 +55,30 @@ function CourseNav() {
   const fuse = new Fuse(courses, options, myIndex);
   const newResult = fuse.search<Syllabus>(search);
 
+  // if key '/' or 's' is pressed, focus on search bar
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "/" || event.key === "s" || event.key === "d") {
+        // prevent first '/' from being typed
+        // if not focuesed on input
+
+        const input = document.querySelector("input");
+
+        if (input) {
+          input.focus();
+        }
+        // check if input is not being focused
+        if (!(document.activeElement == input)) {
+          event.preventDefault();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <>
       <h2>Courses</h2>
@@ -69,7 +93,9 @@ function CourseNav() {
           }}
         />
       </div>
+      <div className="mb-3">
           <p>Showing {newResult.length} results</p>
+      </div>
       {CourseLists(newResult)}
     </>
   );
@@ -80,7 +106,7 @@ function CourseLists(newResult: Fuse.FuseResult<Syllabus>[]) {
   return (
     <div className="border">
       <VirtualList
-        height={500}
+        height={1700}
         itemCount={newResult.length}
         itemSize={80}
         className="virt-list"
@@ -108,25 +134,27 @@ class CourseLink extends React.Component<{ course: Syllabus; name: string }> {
 
     return (
       <div className="card course-hover">
-        <div className="card-body  text-truncate">
-          <h6 className="card-title">
-            <Link
-              className="stretched-link"
+        <div className="card-body text-truncate">
+          <h6 className="card-title text-truncate">
+            <NavLink
+              // className="stretched-link"
+              className={({ isActive }) =>
+                isActive ? "active stretched-link" : "stretched-link"
+              }
               to={`course/${this.props.course.id}`}
-            ></Link>
+            ></NavLink>
             {name}
           </h6>
-          <h6 className="visually-hidden">{name}</h6>
-          <ul className="list-inline">
+          <ul className="list-inline text-break">
             {show_info.map((items, index) => {
               return (
                 <>
                   {items && (
-                    <li className="list-inline-item">
-                      <span className="badge rounded-0  text-bg-secondary">
-                        {" "}
+                    <li className="list-inline-item text-break">
+                      {" "}
+                      <small className="rounded-0 text-bg-secondary font-monospace">
                         {items}
-                      </span>
+                      </small>
                     </li>
                   )}
                 </>
