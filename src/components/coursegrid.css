@@ -1,0 +1,10 @@
+.couseGrid {
+  display: grid !important;
+  grid-column: 1/3 !important;
+}
+
+.btn-smm {
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.5rem;
+  /* --bs-btn-font-size: 0.5rem; */
+}

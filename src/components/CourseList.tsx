@@ -56,38 +56,22 @@ function CourseNav() {
   const newResult = fuse.search<Syllabus>(search);
 
   return (
-    <main className="sticky-top">
-      <div id="main-view" className="row mx-auto">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            minWidth: "min(600px,80vw)",
+    <>
+      <h2>Courses</h2>
+      <div className="mb-3">
+        <input
+          autoFocus
+          type="text"
+          className="form-control"
+          placeholder="e$"
+          onChange={(e) => {
+            setSearch(e.target.value);
           }}
-          className="col col-4"
-        >
-          <h2>Courses</h2>
-          <div className="mb-3">
-            <input
-              autoFocus
-              type="text"
-              className="form-control"
-              placeholder="e$"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-          </div>
-          <p>Showing {newResult.length} results</p>
-          {CourseLists(newResult)}
-        </div>
-        <div className="col">
-          <div className="sticky-top">
-            <Outlet />
-          </div>
-        </div>
+        />
       </div>
-    </main>
+          <p>Showing {newResult.length} results</p>
+      {CourseLists(newResult)}
+    </>
   );
 }
 
