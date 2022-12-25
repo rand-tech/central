@@ -23,7 +23,7 @@ import "./App.css";
 import type { Syllabus, General, Description } from "./Syllabus";
 // import SyllabusAccordion from './components/Syllabus';
 import CourseView from "./components/CourseView";
-import CourseNav from "./components/CourseList";
+import ColumnView from "./ui/ColumnView";
 
 export default function App() {
   return (
@@ -35,7 +35,7 @@ export default function App() {
 
       <Routes >
         <Route path=""  element={<Layout />}>
-          <Route path="" element={<CourseNav />}>
+          <Route path="" element={<ColumnView />}>
             {/*FIXME: This routes to /course/:id when the user clicks on a card. This is not a feature (lol) */}
             <Route path="course/:id" element={<CourseView />} />
             <Route path="*" element={<NoMatch />} />
@@ -49,11 +49,6 @@ export default function App() {
 function Layout() {
   return (
     <div id="layout-main">
-      {/* FIXME: Add sidebar */}
-      {/* <nav id='sidebar'>
-        
-      </nav> */}
-
       <div id="detail">
         <Outlet />
       </div>
